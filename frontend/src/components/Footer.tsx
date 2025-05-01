@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
           </div>
           <div className={styles.contactInfo}>
             <FaEnvelope />
-            <span>info@eshop.lt</span>
+            <span>info@elektronikosshop.lt</span>
           </div>
         </div>
 
@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
               <FaInstagram />
             </a>
-            <a href="mailto:info@eshop.lt" className={styles.socialLink}>
+            <a href="mailto:info@elektronikosshop.lt" className={styles.socialLink}>
               <FaGoogle />
             </a>
           </div>
@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
       </div>
 
       <div className={styles.copyright}>
-        <p>&copy; {new Date().getFullYear()} E-Shop. Visos teisės saugomos.</p>
+        <p>&copy; {new Date().getFullYear()} Elektronikos Shop. Visos teisės saugomos.</p>
       </div>
     </footer>
   );

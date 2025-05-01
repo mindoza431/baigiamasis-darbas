@@ -4,11 +4,12 @@ import axios from '../../api/axios';
 import styles from '../../styles/admin/ProductsList.module.css';
 
 interface Product {
-  id: number;
+  _id: string;
   name: string;
   description: string;
   price: number;
   image: string;
+  category: string;
 }
 
 const ProductsList = () => {
@@ -33,14 +34,14 @@ const ProductsList = () => {
     }
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: string) => {
     if (!window.confirm('Ar tikrai norite ištrinti šią prekę?')) {
       return;
     }
 
     try {
       await axios.delete(`/api/products/${id}`);
-      setProducts(products.filter(product => product.id !== id));
+      setProducts(products.filter(product => product._id !== id));
     } catch (err) {
       setError('Nepavyko ištrinti prekės');
       console.error('Klaida trinant prekę:', err);
@@ -52,7 +53,7 @@ const ProductsList = () => {
   }
 
   return (
-    <div>
+    <div className="container py-4">
       <div className={styles.header}>
         <h2 className={styles.title}>Prekės</h2>
         <Link to="/admin/add-product" className={`btn btn-primary ${styles.addButton}`}>
@@ -67,9 +68,9 @@ const ProductsList = () => {
         </div>
       )}
 
-      <div className={styles.productsGrid}>
+      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {products.map((product) => (
-          <div key={product.id} className="col">
+          <div key={product._id} className="col">
             <div className={`card h-100 ${styles.productCard}`}>
               <img
                 src={product.image}
@@ -82,21 +83,24 @@ const ProductsList = () => {
                   {product.description}
                 </p>
                 <p className={`card-text ${styles.productPrice}`}>
-                  <strong>Kaina: {product.price}€</strong>
+                  <strong>Kaina: {product.price.toFixed(2)}€</strong>
+                </p>
+                <p className={`card-text ${styles.productCategory}`}>
+                  <strong>Kategorija: {product.category}</strong>
                 </p>
               </div>
               <div className={`card-footer bg-transparent ${styles.cardFooter}`}>
                 <div className={`d-flex gap-2 ${styles.actions}`}>
                   <button
                     className={`btn btn-primary btn-sm flex-grow-1 ${styles.editButton}`}
-                    onClick={() => navigate(`/admin/edit-product/${product.id}`)}
+                    onClick={() => navigate(`/admin/edit-product/${product._id}`)}
                   >
                     <i className={`bi bi-pencil ${styles.editButtonIcon}`}></i>
                     Redaguoti
                   </button>
                   <button
                     className={`btn btn-danger btn-sm ${styles.deleteButton}`}
-                    onClick={() => handleDelete(product.id)}
+                    onClick={() => handleDelete(product._id)}
                   >
                     <i className="bi bi-trash"></i>
                   </button>

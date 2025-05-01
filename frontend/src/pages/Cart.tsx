@@ -45,12 +45,12 @@ const Cart = () => {
       });
 
       console.log('Užsakymo atsakymas:', response.data);
+      clearCart();
       setShowSuccess(true);
       
       setTimeout(() => {
-        clearCart();
         setShowSuccess(false);
-      }, 5000);
+      }, 1500);
 
     } catch (err: any) {
       console.error('Klaida pateikiant užsakymą:', err);

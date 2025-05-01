@@ -1,6 +1,5 @@
 const Product = require('../models/Product');
 
-// Gauti visus produktus
 exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.find().populate('creator', 'name email');

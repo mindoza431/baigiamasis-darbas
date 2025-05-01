@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Routes, Route, Link, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import AddProduct from './admin/AddProduct';
 import EditProduct from './admin/EditProduct';
 import ProductsList from './admin/ProductsList';
@@ -10,6 +10,10 @@ const Admin = () => {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(location.pathname);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    setActiveTab(location.pathname);
+  }, [location.pathname]);
 
   return (
     <div className={styles.container}>
@@ -73,6 +77,7 @@ const Admin = () => {
           <div className={styles.card}>
             <div className={styles.cardBody}>
               <Routes>
+                <Route path="/" element={<Navigate to="/admin/products" replace />} />
                 <Route path="products" element={<ProductsList />} />
                 <Route path="add-product" element={<AddProduct />} />
                 <Route path="edit-product/:id" element={<EditProduct />} />
