@@ -1,0 +1,32 @@
+.cartContainer {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0;
+}
+
+.cartContent {
+  flex: 1;
+}
+
+.emptyCart {
+  text-align: center;
+  padding: 2rem;
+}
+
+.table {
+  margin-bottom: 2rem;
+}
+
+.totalSection {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .cartContainer {
+    padding: 1rem 0;
+  }
+} 

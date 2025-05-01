@@ -1,0 +1,94 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  margin: 0;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+}
+
+.addButtonIcon {
+  margin-right: 0.5rem;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .productsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .productsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.productCard {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.productImage {
+  height: 200px;
+  object-fit: cover;
+}
+
+.productBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.productTitle {
+  margin-bottom: 0.5rem;
+}
+
+.productDescription {
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.productPrice {
+  margin-top: auto;
+}
+
+.cardFooter {
+  background: transparent;
+  padding: 1rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.editButton {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editButtonIcon {
+  margin-right: 0.5rem;
+}
+
+.deleteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} 

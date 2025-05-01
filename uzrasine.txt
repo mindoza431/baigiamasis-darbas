@@ -1,0 +1,3 @@
+backendas : npm run dev - cd backend
+frontendas : npm run dev - cd frontend
+be portas 5000

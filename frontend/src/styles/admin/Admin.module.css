@@ -1,0 +1,74 @@
+.container {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0;
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardBody {
+  flex: 1;
+  padding: 1.5rem;
+}
+
+.sidebar {
+  position: sticky;
+  top: 1rem;
+  height: fit-content;
+}
+
+.sidebarList {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.sidebarItem {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: none;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.sidebarItem:hover {
+  background-color: #f8f9fa;
+  color: #007bff;
+}
+
+.sidebarItem.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.sidebarIcon {
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.sidebarToggle {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem 0;
+  }
+  
+  .sidebar {
+    position: static;
+    margin-bottom: 1rem;
+  }
+} 

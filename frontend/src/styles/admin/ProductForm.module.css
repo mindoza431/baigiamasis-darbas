@@ -1,0 +1,93 @@
+.formContainer {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.formTitle {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+.textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  resize: vertical;
+  min-height: 100px;
+}
+
+.priceInput {
+  display: flex;
+  align-items: center;
+}
+
+.priceInput input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.priceInput span {
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+  padding: 0.5rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.imagePreview {
+  margin-top: 1rem;
+}
+
+.imagePreview img {
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 0.25rem;
+}
+
+.formActions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.submitButton {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submitButtonIcon {
+  margin-right: 0.5rem;
+}
+
+.cancelButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cancelButtonIcon {
+  margin-right: 0.5rem;
+}
+
+.loadingSpinner {
+  margin-right: 0.5rem;
+} 
