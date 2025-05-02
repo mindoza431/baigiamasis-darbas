@@ -25,7 +25,7 @@ interface Order {
   _id: string;
   items: OrderItem[];
   total: number;
-  status: string;
+  status: 'pending' | 'processing' | 'completed' | 'cancelled';
   createdAt: string;
 }
 
@@ -39,6 +39,16 @@ const Profile = () => {
   });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+
+  const getStatusText = (status: Order['status']) => {
+    const statusMap = {
+      pending: 'Laukiama',
+      processing: 'Apdorojama',
+      completed: 'Užbaigta',
+      cancelled: 'Atšaukta'
+    };
+    return statusMap[status];
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -195,34 +205,31 @@ const Profile = () => {
                     <div className={styles.orderHeader}>
                       <div className={styles.orderInfo}>
                         <span className={styles.orderDate}>
-                          Užsakymo data: {new Date(order.createdAt).toLocaleDateString()}
+                          Užsakymo data: {new Date(order.createdAt).toLocaleDateString('lt-LT')}
                         </span>
                         <span className={`${styles.orderStatus} ${styles[order.status]}`}>
-                          {order.status}
+                          {getStatusText(order.status)}
                         </span>
                       </div>
                       <div className={styles.orderTotal}>
-                        Bendra suma: {order.total.toFixed(2)}€
+                        Suma: {order.total.toFixed(2)}€
                       </div>
                     </div>
                     <div className={styles.orderProducts}>
-                      {order.items.map((item, index) => {
-                        console.log('Item structure:', item);
-                        return (
-                          <div key={index} className={styles.productRow}>
-                            <img 
-                              src={item.product?.image || '/placeholder-image.jpg'} 
-                              alt={item.product?.name || 'Prekės nuotrauka'} 
-                              className={styles.productImage}
-                            />
-                            <div className={styles.productName}>
-                              {item.product?.name || 'Prekės pavadinimas nerastas'}
-                            </div>
-                            <div className={styles.productQuantity}>Kiekis: {item.quantity}</div>
-                            <div className={styles.productPrice}>{item.price}€</div>
+                      {order.items.map((item, index) => (
+                        <div key={index} className={styles.productItem}>
+                          <img
+                            src={item.product.image}
+                            alt={item.product.name}
+                            className={styles.productImage}
+                          />
+                          <div className={styles.productInfo}>
+                            <span className={styles.productName}>{item.product.name}</span>
+                            <span className={styles.productQuantity}>{item.quantity} vnt.</span>
+                            <span className={styles.productPrice}>{item.price.toFixed(2)}€</span>
                           </div>
-                        );
-                      })}
+                        </div>
+                      ))}
                     </div>
                   </div>
                 ))}

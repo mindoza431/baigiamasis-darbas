@@ -5,7 +5,8 @@
 }
 
 .profileContent {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
 }
 
@@ -18,21 +19,19 @@
 }
 
 .cardHeader {
-  background: #f8f9fa;
+  background-color: #f8f9fa;
   padding: 1rem;
   border-bottom: 1px solid #dee2e6;
 }
 
+.cardHeader h2 {
+  margin: 0;
+  color: #333;
+  font-size: 1.5rem;
+}
+
 .cardBody {
   padding: 1.5rem;
-}
-
-.userInfo {
-  margin-bottom: 1.5rem;
-}
-
-.userInfo p {
-  margin-bottom: 0.5rem;
 }
 
 .formGroup {
@@ -42,13 +41,16 @@
 .formGroup label {
   display: block;
   margin-bottom: 0.5rem;
+  color: #333;
+  font-weight: 500;
 }
 
 .formGroup input {
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid #ced4da;
+  border: 1px solid #dee2e6;
   border-radius: 4px;
+  font-size: 1rem;
 }
 
 .buttonGroup {
@@ -57,7 +59,11 @@
   margin-top: 1.5rem;
 }
 
-/* Užsakymų stiliai */
+.userInfo p {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
 .ordersList {
   display: flex;
   flex-direction: column;
@@ -67,17 +73,15 @@
 .orderItem {
   border: 1px solid #dee2e6;
   border-radius: 8px;
-  background: white;
   overflow: hidden;
 }
 
 .orderHeader {
+  background-color: #f8f9fa;
+  padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  background: #f8f9fa;
-  border-bottom: 1px solid #dee2e6;
 }
 
 .orderInfo {
@@ -87,94 +91,109 @@
 }
 
 .orderDate {
-  color: #6c757d;
-  font-size: 0.9rem;
+  color: #666;
 }
 
 .orderStatus {
-  padding: 0.25rem 0.75rem;
-  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
   font-weight: 500;
-  font-size: 0.9rem;
+}
+
+.pending {
+  background-color: #ffd700;
+  color: #000;
+}
+
+.processing {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+.completed {
+  background-color: #198754;
+  color: #fff;
+}
+
+.cancelled {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.orderTotal {
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
 .orderProducts {
   padding: 1rem;
 }
 
-.productRow {
+.productItem {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  padding: 1rem;
-  border-bottom: 1px solid #e9ecef;
-  background: #fff;
+  padding: 0.5rem;
+  border-bottom: 1px solid #eee;
 }
 
-.productRow:last-child {
+.productItem:last-child {
   border-bottom: none;
 }
 
 .productImage {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   object-fit: cover;
   border-radius: 4px;
-  border: 1px solid #dee2e6;
-  background: #f8f9fa;
+  margin-right: 1rem;
+}
+
+.productInfo {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
 }
 
 .productName {
-  flex: 1;
   font-weight: 500;
-  font-size: 1.1rem;
-  color: #212529;
+  flex: 1;
 }
 
 .productQuantity {
-  color: #6c757d;
-  min-width: 100px;
-  font-size: 0.9rem;
+  color: #666;
+  white-space: nowrap;
 }
 
 .productPrice {
   font-weight: 600;
-  min-width: 80px;
-  text-align: right;
-  color: #212529;
-}
-
-.orderTotal {
-  font-weight: 600;
-  color: #212529;
-}
-
-.orderStatus.pending {
-  background-color: #fff3cd;
-  color: #856404;
-}
-
-.orderStatus.processing {
-  background-color: #cce5ff;
-  color: #004085;
-}
-
-.orderStatus.completed {
-  background-color: #d4edda;
-  color: #155724;
-}
-
-.orderStatus.cancelled {
-  background-color: #f8d7da;
-  color: #721c24;
+  white-space: nowrap;
 }
 
 @media (max-width: 768px) {
   .profileContainer {
-    padding: 1rem 0;
+    padding: 1rem;
   }
-  
-  .profileCard {
-    margin: 0 1rem;
+
+  .orderHeader {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .orderInfo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .productInfo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .productPrice {
+    align-self: flex-end;
   }
 } 
