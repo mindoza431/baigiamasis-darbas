@@ -1,128 +1,167 @@
+.ordersContainer {
+  padding: 2rem;
+}
+
 .title {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  color: #333;
+  font-weight: 600;
 }
 
 .ordersGrid {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 1rem;
-}
-
-@media (min-width: 768px) {
-  .ordersGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 992px) {
-  .ordersGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
 }
 
 .orderCard {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+  transition: transform 0.2s ease-in-out;
+}
+
+.orderCard:hover {
+  transform: translateY(-5px);
 }
 
 .cardHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #f8f9fa;
   padding: 1rem;
 }
 
 .orderTitle {
   margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .statusBadge {
-  padding: 0.35rem 0.65rem;
-  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 500;
 }
 
-.statusBadge.pending {
-  background-color: #6c757d;
-  color: white;
+.pending {
+  background-color: #ffd700;
+  color: #000;
 }
 
-.statusBadge.processing {
-  background-color: #ffc107;
-  color: black;
+.processing {
+  background-color: #0d6efd;
+  color: #fff;
 }
 
-.statusBadge.completed {
+.completed {
   background-color: #198754;
-  color: white;
+  color: #fff;
 }
 
-.statusBadge.cancelled {
+.cancelled {
   background-color: #dc3545;
-  color: white;
-}
-
-.cardBody {
-  flex: 1;
-  padding: 1rem;
+  color: #fff;
 }
 
 .section {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.section:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
 .sectionTitle {
-  color: #6c757d;
+  color: #666;
+  font-size: 0.9rem;
   margin-bottom: 0.5rem;
-  font-size: 0.875rem;
 }
 
 .userName {
-  margin-bottom: 0.25rem;
+  margin: 0;
+  font-size: 1.1rem;
 }
 
 .userEmail {
-  color: #6c757d;
   margin: 0;
+  color: #666;
 }
 
 .itemsList {
-  margin: 0;
-  padding: 0;
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .item {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0.25rem;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.itemInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.itemImage {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.itemDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.itemName {
+  font-weight: 500;
+}
+
+.itemQuantity {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.itemPrice {
+  font-weight: 500;
 }
 
 .total {
+  font-size: 1.2rem;
   margin: 0;
 }
 
 .date {
+  color: #666;
   margin: 0;
-}
-
-.cardFooter {
-  background: transparent;
-  padding: 1rem;
 }
 
 .actions {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .printButton {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.5rem;
 }
 
-.printButtonIcon {
-  margin-right: 0.5rem;
+@media print {
+  .actions {
+    display: none;
+  }
 } 

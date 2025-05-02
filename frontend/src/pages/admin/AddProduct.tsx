@@ -10,11 +10,12 @@ const AddProduct = () => {
     description: '',
     price: '',
     image: '',
+    category: ''
   });
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -34,8 +35,8 @@ const AddProduct = () => {
       });
 
       navigate('/admin/products');
-    } catch (err) {
-      setError('Nepavyko pridėti prekės');
+    } catch (err: any) {
+      setError(err.response?.data?.message || 'Nepavyko pridėti prekės');
       console.error('Klaida pridedant prekę:', err);
     } finally {
       setIsSubmitting(false);
@@ -109,6 +110,24 @@ const AddProduct = () => {
                 onChange={handleChange}
                 required
               />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="category" className={styles.label}>Kategorija</label>
+              <select
+                className={`form-control ${styles.input}`}
+                id="category"
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Pasirinkite kategoriją</option>
+                <option value="Kompiuteriai">Kompiuteriai</option>
+                <option value="Telefonai">Telefonai</option>
+                <option value="Planšetės">Planšetės</option>
+                <option value="Televizoriai">Televizoriai</option>
+              </select>
             </div>
 
             <div className={styles.formActions}>

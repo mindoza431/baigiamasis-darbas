@@ -3,8 +3,8 @@ const router = express.Router();
 const authController = require('../controllers/authController');
 const requireAuth = require('../middleware/requireAuth');
 const requireAdmin = require('../middleware/requireAdmin');
-const auth = require('../middleware/auth'); // <- ŠITAS REIKALINGAS
-const User = require('../models/User'); // Pridėtas User modelis
+const auth = require('../middleware/auth');
+const User = require('../models/User');
 
 router.post('/register', authController.register);
 router.post('/login', authController.login);
@@ -31,7 +31,6 @@ router.patch('/me', auth, async (req, res) => {
       return res.status(404).json({ message: 'Vartotojas nerastas' });
     }
 
-    // Patikriname, ar naujas el. paštas jau nėra užimtas
     if (email !== user.email) {
       const existingUser = await User.findOne({ email });
       if (existingUser) {

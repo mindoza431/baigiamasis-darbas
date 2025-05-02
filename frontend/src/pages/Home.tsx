@@ -52,7 +52,7 @@ const Home: React.FC = () => {
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <h1>Gerokai pigiau nei kitur</h1>
-          <p>Geriausi pasiūlymai jums!</p>
+          <p>Geriausi pasiūlymai Jums!</p>
           <Link to="/products" className={styles.ctaButton}>
             Atraskite mūsų pasiūlymus
           </Link>
