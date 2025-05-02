@@ -54,7 +54,6 @@ exports.getMyOrders = async (req, res) => {
   }
 };
 
-// tik admino uzsakymai
 exports.getAllOrders = async (req, res) => {
   try {
     const orders = await Order.find()

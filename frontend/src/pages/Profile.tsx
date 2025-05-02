@@ -10,8 +10,28 @@ interface UserData {
   role: string;
 }
 
+interface OrderItem {
+  product: {
+    _id: string;
+    name: string;
+    image: string;
+    price: number;
+  };
+  quantity: number;
+  price: number;
+}
+
+interface Order {
+  _id: string;
+  items: OrderItem[];
+  total: number;
+  status: string;
+  createdAt: string;
+}
+
 const Profile = () => {
   const [userData, setUserData] = useState<UserData | null>(null);
+  const [orders, setOrders] = useState<Order[]>([]);
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -21,21 +41,27 @@ const Profile = () => {
   const [success, setSuccess] = useState('');
 
   useEffect(() => {
-    const fetchUserData = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get<UserData>('/api/users/me');
-        setUserData(response.data);
+        // Gauname vartotojo duomenis
+        const userResponse = await axios.get<UserData>('/api/auth/me');
+        setUserData(userResponse.data);
         setFormData({
-          name: response.data.name,
-          email: response.data.email,
+          name: userResponse.data.name,
+          email: userResponse.data.email,
         });
+
+        // Gauname užsakymus
+        const ordersResponse = await axios.get<Order[]>('/api/orders/my');
+        console.log('Gauti užsakymai:', ordersResponse.data);
+        setOrders(ordersResponse.data);
       } catch (err) {
-        setError('Nepavyko užkrauti vartotojo duomenų');
-        console.error('Klaida gaunant vartotojo duomenis:', err);
+        setError('Nepavyko užkrauti duomenų');
+        console.error('Klaida gaunant duomenis:', err);
       }
     };
 
-    fetchUserData();
+    fetchData();
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,12 +78,12 @@ const Profile = () => {
       setError('');
       setSuccess('');
       
-      await axios.patch('/api/users/me', formData);
+      await axios.patch('/api/auth/me', formData);
       setUserData(prev => prev ? { ...prev, ...formData } : null);
       setSuccess('Profilis sėkmingai atnaujintas');
       setIsEditing(false);
-    } catch (err) {
-      setError('Nepavyko atnaujinti profilio');
+    } catch (err: any) {
+      setError(err.response?.data?.message || 'Nepavyko atnaujinti profilio');
       console.error('Klaida atnaujinant profilį:', err);
     }
   };
@@ -139,28 +165,68 @@ const Profile = () => {
                 </div>
               </form>
             ) : (
-              <>
+              <div>
                 <div className={styles.userInfo}>
-                  <h5>Vardas</h5>
-                  <p>{userData.name}</p>
+                  <p><strong>Vardas:</strong> {userData.name}</p>
+                  <p><strong>El. paštas:</strong> {userData.email}</p>
                 </div>
-                <div className={styles.userInfo}>
-                  <h5>El. paštas</h5>
-                  <p>{userData.email}</p>
-                </div>
-                <div className={styles.userInfo}>
-                  <h5>Rolė</h5>
-                  <p>{userData.role}</p>
-                </div>
-                <div className={styles.buttonGroup}>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => setIsEditing(true)}
-                  >
-                    Redaguoti profilį
-                  </button>
-                </div>
-              </>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => setIsEditing(true)}
+                >
+                  Redaguoti profilį
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className={styles.ordersCard}>
+          <div className={styles.cardHeader}>
+            <h2 className="mb-0">Mano užsakymai</h2>
+          </div>
+          <div className={styles.cardBody}>
+            {orders.length === 0 ? (
+              <p>Jūs dar neturite užsakymų</p>
+            ) : (
+              <div className={styles.ordersList}>
+                {orders.map(order => (
+                  <div key={order._id} className={styles.orderItem}>
+                    <div className={styles.orderHeader}>
+                      <div className={styles.orderInfo}>
+                        <span className={styles.orderDate}>
+                          Užsakymo data: {new Date(order.createdAt).toLocaleDateString()}
+                        </span>
+                        <span className={`${styles.orderStatus} ${styles[order.status]}`}>
+                          {order.status}
+                        </span>
+                      </div>
+                      <div className={styles.orderTotal}>
+                        Bendra suma: {order.total.toFixed(2)}€
+                      </div>
+                    </div>
+                    <div className={styles.orderProducts}>
+                      {order.items.map((item, index) => {
+                        console.log('Item structure:', item);
+                        return (
+                          <div key={index} className={styles.productRow}>
+                            <img 
+                              src={item.product?.image || '/placeholder-image.jpg'} 
+                              alt={item.product?.name || 'Prekės nuotrauka'} 
+                              className={styles.productImage}
+                            />
+                            <div className={styles.productName}>
+                              {item.product?.name || 'Prekės pavadinimas nerastas'}
+                            </div>
+                            <div className={styles.productQuantity}>Kiekis: {item.quantity}</div>
+                            <div className={styles.productPrice}>{item.price}€</div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
             )}
           </div>
         </div>

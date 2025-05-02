@@ -2,20 +2,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .title {
   margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
 }
 
 .addButton {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 
 .addButtonIcon {
-  margin-right: 0.5rem;
+  font-size: 1.25rem;
 }
 
 .productsGrid {
@@ -37,38 +40,56 @@
 }
 
 .productCard {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+  transition: transform 0.2s ease-in-out;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.productCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .productImage {
   height: 200px;
   object-fit: cover;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 .productBody {
-  flex: 1;
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 }
 
 .productTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
 .productDescription {
+  font-size: 0.9rem;
   color: #6c757d;
-  margin-bottom: 1rem;
+  flex-grow: 1;
+  margin-bottom: 0.5rem;
 }
 
 .productPrice {
-  margin-top: auto;
+  font-size: 1.1rem;
+  color: #198754;
+  margin-bottom: 0.5rem;
+}
+
+.productCategory {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-bottom: 0;
 }
 
 .cardFooter {
-  background: transparent;
   padding: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 .actions {
@@ -77,18 +98,15 @@
 }
 
 .editButton {
-  flex: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.5rem;
 }
 
 .editButtonIcon {
-  margin-right: 0.5rem;
+  font-size: 1rem;
 }
 
 .deleteButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 0.25rem 0.5rem;
 } 

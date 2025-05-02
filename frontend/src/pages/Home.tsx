@@ -51,7 +51,7 @@ const Home: React.FC = () => {
     <div>
       <section className={styles.hero}>
         <div className={styles.heroContent}>
-          <h1>Gerokai geriau nei kitur</h1>
+          <h1>Gerokai pigiau nei kitur</h1>
           <p>Geriausi pasiūlymai jums!</p>
           <Link to="/products" className={styles.ctaButton}>
             Atraskite mūsų pasiūlymus
