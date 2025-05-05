@@ -4,11 +4,13 @@ import axios from '../api/axios';
 import { useCart } from '../contexts/CartContext';
 
 interface Product {
-  id: number;
+  _id: string;
   name: string;
   price: number;
   description: string;
   image: string;
+  category: string;
+  discount?: number;
 }
 
 const ProductDetails = () => {
@@ -50,7 +52,17 @@ const ProductDetails = () => {
         </div>
         <div className="col-md-6">
           <h1>{product.name}</h1>
-          <p className="lead">{product.price}€</p>
+          {product.discount ? (
+            <div className="mb-3">
+              <span className="text-decoration-line-through text-muted me-2 fs-4">{product.price}€</span>
+              <span className="text-danger fw-bold fs-4">
+                {(product.price * (1 - product.discount / 100)).toFixed(2)}€
+              </span>
+              <span className="badge bg-danger ms-2 fs-6">-{product.discount}%</span>
+            </div>
+          ) : (
+            <p className="lead">{product.price}€</p>
+          )}
           <p>{product.description}</p>
           <div className="d-flex gap-2">
             <button

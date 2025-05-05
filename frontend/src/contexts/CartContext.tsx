@@ -7,6 +7,7 @@ interface Product {
   description: string;
   image: string;
   category: string;
+  discount?: number;
 }
 
 interface CartItem extends Product {
@@ -97,7 +98,12 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   const total = state.items.reduce(
-    (sum, item) => sum + item.price * item.quantity,
+    (sum, item) => {
+      const itemPrice = item.discount 
+        ? item.price * (1 - item.discount / 100)
+        : item.price;
+      return sum + itemPrice * item.quantity;
+    },
     0
   );
 
