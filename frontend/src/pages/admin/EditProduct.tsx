@@ -9,6 +9,7 @@ interface Product {
   description: string;
   price: number;
   image: string;
+  discount?: number;
 }
 
 const EditProduct = () => {
@@ -116,6 +117,29 @@ const EditProduct = () => {
                 />
                 <span className="input-group-text">€</span>
               </div>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="discount" className={styles.label}>Nuolaida (%)</label>
+              <div className={styles.priceInput}>
+                <input
+                  type="number"
+                  min="0"
+                  max="100"
+                  step="1"
+                  className={`form-control ${styles.input}`}
+                  id="discount"
+                  name="discount"
+                  value={formData.discount || 0}
+                  onChange={handleChange}
+                />
+                <span className="input-group-text">%</span>
+              </div>
+              {formData.discount && formData.discount > 0 && (
+                <div className={styles.discountInfo}>
+                  <p>Nauja kaina su nuolaida: {(formData.price * (1 - formData.discount / 100)).toFixed(2)} €</p>
+                </div>
+              )}
             </div>
 
             <div className={styles.formGroup}>

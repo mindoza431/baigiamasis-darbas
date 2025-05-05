@@ -24,6 +24,12 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Kategorija yra privaloma'],
     trim: true
+  },
+  discount: {
+    type: Number,
+    min: 0,
+    max: 100,
+    default: 0
   }
 }, {
   timestamps: true

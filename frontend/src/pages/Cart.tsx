@@ -152,7 +152,19 @@ const Cart = () => {
                     </div>
                   </div>
                 </td>
-                <td>{item.price}€</td>
+                <td>
+                  {item.discount ? (
+                    <div>
+                      <span className="text-decoration-line-through text-muted me-2">{item.price}€</span>
+                      <span className="text-danger fw-bold">
+                        {(item.price * (1 - item.discount / 100)).toFixed(2)}€
+                      </span>
+                      <span className="badge bg-danger ms-2">-{item.discount}%</span>
+                    </div>
+                  ) : (
+                    <span>{item.price}€</span>
+                  )}
+                </td>
                 <td>
                   <input
                     type="number"
@@ -163,7 +175,15 @@ const Cart = () => {
                     style={{ width: '70px' }}
                   />
                 </td>
-                <td>{(item.price * item.quantity).toFixed(2)}€</td>
+                <td>
+                  {item.discount ? (
+                    <span className="text-danger fw-bold">
+                      {((item.price * (1 - item.discount / 100)) * item.quantity).toFixed(2)}€
+                    </span>
+                  ) : (
+                    <span>{(item.price * item.quantity).toFixed(2)}€</span>
+                  )}
+                </td>
                 <td>
                   <button
                     className="btn btn-danger btn-sm"

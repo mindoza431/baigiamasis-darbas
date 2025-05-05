@@ -10,6 +10,7 @@ interface Product {
   description: string;
   image: string;
   category: string;
+  discount?: number;
 }
 
 const Products = () => {
@@ -76,7 +77,17 @@ const Products = () => {
                 <h5 className="card-title">{product.name}</h5>
                 <p className="card-text">{product.description}</p>
                 <p className="card-text">
-                  <strong>Kaina: {product.price}€</strong>
+                  {product.discount ? (
+                    <div>
+                      <span className="text-decoration-line-through text-muted me-2">{product.price}€</span>
+                      <span className="text-danger fw-bold">
+                        {(product.price * (1 - product.discount / 100)).toFixed(2)}€
+                      </span>
+                      <span className="badge bg-danger ms-2">-{product.discount}%</span>
+                    </div>
+                  ) : (
+                    <strong>Kaina: {product.price}€</strong>
+                  )}
                 </p>
                 <div className="d-flex justify-content-between">
                   <Link

@@ -148,10 +148,32 @@
 }
 
 .productPrice {
+  font-size: 1.2rem;
   font-weight: bold;
-  color: #4CAF50;
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.originalPrice {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 1rem;
+}
+
+.discountedPrice {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.discountBadge {
+  background-color: #e74c3c;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: bold;
 }
 
 .viewButton {

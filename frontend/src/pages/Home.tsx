@@ -11,6 +11,7 @@ interface Product {
   description: string;
   category: string;
   stock: number;
+  discount?: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -86,7 +87,19 @@ const Home: React.FC = () => {
               <div className={styles.productInfo}>
                 <h3>{product.name}</h3>
                 <p>{product.description}</p>
-                <div className={styles.productPrice}>{product.price} €</div>
+                <div className={styles.productPrice}>
+                  {product.discount ? (
+                    <>
+                      <span className={styles.originalPrice}>{product.price} €</span>
+                      <span className={styles.discountedPrice}>
+                        {(product.price * (1 - product.discount / 100)).toFixed(2)} €
+                      </span>
+                      <span className={styles.discountBadge}>-{product.discount}%</span>
+                    </>
+                  ) : (
+                    <span>{product.price} €</span>
+                  )}
+                </div>
                 <Link to={`/products/${product._id}`} className={styles.viewButton}>
                   Peržiūrėti
                 </Link>
