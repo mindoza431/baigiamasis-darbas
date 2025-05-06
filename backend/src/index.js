@@ -36,12 +36,12 @@ mongoose.connect(process.env.MONGODB_URI)
     process.exit(1);
   });
 
-app.use('/api/auth', require('../routes/auth'));
 app.use('/api/auth', require('../routes/authRoutes'));
 app.use('/api/products', require('../routes/products'));
 app.use('/api/orders', require('../routes/orderRoutes'));
+const reviewRoutes = require('./routes/reviewRoutes');
 
-
+app.use('/api/reviews', reviewRoutes);
 
 app.use((err, req, res, next) => {
   console.error('Serverio klaida:', err);

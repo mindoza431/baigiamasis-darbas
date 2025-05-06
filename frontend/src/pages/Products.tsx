@@ -86,7 +86,7 @@ const Products = () => {
                       <span className="badge bg-danger ms-2">-{product.discount}%</span>
                     </div>
                   ) : (
-                    <strong>Kaina: {product.price}€</strong>
+                  <strong>Kaina: {product.price}€</strong>
                   )}
                 </p>
                 <div className="d-flex justify-content-between">
