@@ -15,7 +15,14 @@ router.get('/me', auth, async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: 'Vartotojas nerastas' });
     }
-    res.json(user);
+    res.json({ 
+      data: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role
+      }
+    });
   } catch (error) {
     console.error('Klaida gaunant vartotoją:', error);
     res.status(500).json({ message: 'Serverio klaida' });

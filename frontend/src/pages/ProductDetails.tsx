@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
 import { useCart } from '../contexts/CartContext';
+import ProductReviews from '../components/ProductDetails';
 
 interface Product {
   _id: string;
@@ -61,7 +62,7 @@ const ProductDetails = () => {
               <span className="badge bg-danger ms-2 fs-6">-{product.discount}%</span>
             </div>
           ) : (
-            <p className="lead">{product.price}€</p>
+          <p className="lead">{product.price}€</p>
           )}
           <p>{product.description}</p>
           <div className="d-flex gap-2">
@@ -79,6 +80,11 @@ const ProductDetails = () => {
             </button>
           </div>
         </div>
+      </div>
+
+      {/* Atsiliepimų sekcija */}
+      <div className="mt-5">
+        <ProductReviews />
       </div>
     </div>
   );
