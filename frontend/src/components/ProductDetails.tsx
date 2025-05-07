@@ -204,10 +204,15 @@ const ProductDetails: React.FC = () => {
                   {isAdmin && (
                     <Box>
                       <IconButton 
-                        onClick={() => {
-                          console.log('Delete button clicked for review:', review._id);
-                          handleDelete(review._id);
-                        }}
+                        onClick={() => handleEdit(review)}
+                        color="primary"
+                        title="Redaguoti atsiliepimą"
+                        sx={{ mr: 1 }}
+                      >
+                        <EditIcon />
+                      </IconButton>
+                      <IconButton 
+                        onClick={() => handleDelete(review._id)}
                         color="error"
                         title="Ištrinti atsiliepimą"
                       >
