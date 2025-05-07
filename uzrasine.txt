@@ -1,3 +1,164 @@
-backendas : npm run dev - cd backend
-frontendas : npm run dev - cd frontend
-be portas 5000
+Back-endo paleidimas : cd backend , npm run dev
+Front-endo paleidimas : cd frontend , npm run dev
+Back-endo portas 5000
+
+Užduočių story points: 
+
+Story 1.1: Vartotojas gali susikurti paskyrą
+Tikslas: vartotojas gali užsiregistruoti su el. paštu ir slaptažodžiu.
+
+Taskai:
+ Sukurti registracijos formą (FE)
+
+ Validuoti formos duomenis (el. pašto formatas, slaptažodžio ilgis)
+
+ Sukurti API POST /api/register (BE)
+
+ Sukurti User modelį duomenų bazėje (el. paštas, slaptažodis, role)
+
+ Hashinti slaptažodį su bcrypt
+
+ Patikrinti, ar el. paštas jau registruotas
+
+ Grąžinti sėkmės arba klaidos atsakymą (status, message)
+
+ Rodyti klaidą vartotojui FE pusėje
+
+✅ Story 1.2: Vartotojas gali prisijungti
+Tikslas: vartotojas įveda duomenis ir gauna sesiją/tokeną.
+
+Taskai:
+ Sukurti prisijungimo formą (FE)
+
+ Validuoti įvestus duomenis
+
+ Sukurti API POST /api/login (BE)
+
+ Tikrinti ar el. paštas egzistuoja
+
+ Patikrinti slaptažodį su bcrypt.compare
+
+ Sugeneruoti JWT tokeną ir grąžinti jį vartotojui
+
+ Saugojimas FE pusėje (localStorage / cookies)
+
+ Redirektinti vartotoją į pagrindinį puslapį po prisijungimo
+
+ Rodyti login klaidas (pvz. "neteisingas slaptažodis")
+
+✅ Story 2.1: Admin gali kurti/redaguoti/trinti produktus
+Tikslas: administratoriaus UI leidžia valdyti produktus.
+
+Taskai:
+ Sukurti Product modelį (pavadinimas, aprašymas, kaina, nuotrauka, kategorija)
+
+ Sukurti API route’us:
+
+ POST /api/products – sukurti produktą
+
+ PUT /api/products/:id – redaguoti
+
+ DELETE /api/products/:id – trinti
+
+ GET /api/products/:id – gauti vieną
+
+ Middleware „isAdmin“ tikrina ar vartotojas turi admin rolę
+
+ Sukurti FE formą produkto pridėjimui ir redagavimui
+
+ Įgyvendinti produktų ištrynimo mygtuką FE pusėje
+
+ Rodyti adminui visų produktų sąrašą su redagavimo mygtukais
+
+✅ Story 2.2: Vartotojai mato prekes
+Tikslas: bet kuris lankytojas gali matyti visus produktus.
+
+Taskai:
+ Sukurti FE produktų sąrašo puslapį
+
+ Gauti duomenis iš API (GET /api/products)
+
+ Produktų kortelės: pavadinimas, kaina, mygtukas „į krepšelį“
+
+ Produktų filtravimas pagal kategoriją (papildomas)
+
+ Vieno produkto puslapis (detalės, aprašymas, nuotrauka)
+
+✅ Story 3.1: Pridėti prekę į krepšelį
+Tikslas: vartotojas gali paspausti „į krepšelį“ ir įsidėti prekę.
+
+Taskai:
+ Sukurti krepšelio „context“ arba „hook“ FE pusėje
+
+ Pridėti logiką pridėjimui į localStorage ar Context
+
+ Mygtukas „Į krepšelį“ produkto kortelėje
+
+ Patikrinti ar prekė jau yra krepšelyje (jei taip – padidinti kiekį)
+
+✅ Story 3.2: Peržiūrėti ir redaguoti krepšelį
+Tikslas: vartotojas gali matyti ką įsidėjo ir keisti kiekį.
+
+Taskai:
+ Sukurti krepšelio puslapį
+
+ Rodyti visas prekes iš krepšelio
+
+ Galimybė keisti kiekį
+
+ Galimybė pašalinti prekę
+
+ Skaičiuoti bendrą sumą
+
+ Mygtukas „Tęsti su pirkimu“ → į checkout puslapį
+
+✅ Story 4.1: Vartotojas gali pateikti užsakymą
+Tikslas: pateikti prekių užsakymą su kontaktais.
+
+Taskai:
+ Checkout forma: vardas, adresas, telefonas
+
+ Sukurti API POST /api/orders (BE)
+
+ Užsakyme saugoti user ID, prekes, sumą, laiką, adresą
+
+ Išvalyti krepšelį po sėkmingo užsakymo
+
+ Grąžinti patvirtinimą FE pusėje
+
+✅ Story 4.2: Admin mato visus užsakymus
+Tikslas: admin gali stebėti vartotojų užsakymus.
+
+Taskai:
+ Sukurti API GET /api/admin/orders
+
+ Middleware „isAdmin“ apsauga
+
+ Užsakymų sąrašas: kas užsakė, kada, kiekis, statusas
+
+ (Papildoma) Keisti statusą (pvz. „Vykdomas“, „Išsiųsta“)
+
+✅ Story 5.1: Navigacija
+ Sukurti pagrindinę navigacijos juostą
+
+ Rodyti login/signup jei neprisijungęs
+
+ Rodyti user vardą ir „Atsijungti“ jei prisijungęs
+
+ Krepšelio ikona su prekių skaičiumi
+
+✅ Story 5.2: Responsyvus dizainas
+ Naudoti flexbox arba grid komponentų išdėstymui
+
+ Užtikrinti veikimą (responsive)
+
+✅ Story 5.3: UI feedback
+ Rodyti „loading“ kai laukiama duomenų
+
+ Rodyti validacijos klaidas prie formų
+
+ Notifikacijos (pvz. „Prekė pridėta į krepšelį“)
+ 
+ Naudojama Bootstrap ir react-icons biblioteka
+
+
