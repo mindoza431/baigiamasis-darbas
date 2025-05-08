@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useUser } from '../contexts/UserContext';
 import axios from '../api/axios';
 import styles from '../styles/Profile.module.css';
 
