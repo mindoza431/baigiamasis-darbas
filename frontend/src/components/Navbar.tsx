@@ -5,7 +5,7 @@ import { useCart } from '../contexts/CartContext';
 import styles from '../styles/Navbar.module.css';
 
 interface NavbarProps {
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ children }) => {

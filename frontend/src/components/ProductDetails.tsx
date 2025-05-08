@@ -256,7 +256,7 @@ const ProductDetails: React.FC = () => {
           rows={4}
           label="Komentaras"
           value={comment}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setComment(e.target.value)}
+          onChange={(e) => setComment(e.target.value)}
           sx={{ mb: 2 }}
         />
         <Button
