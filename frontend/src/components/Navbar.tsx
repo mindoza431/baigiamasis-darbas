@@ -4,11 +4,9 @@ import { useUser } from '../contexts/UserContext';
 import { useCart } from '../contexts/CartContext';
 import styles from '../styles/Navbar.module.css';
 
-interface NavbarProps {
-  children: React.ReactNode;
-}
+interface NavbarProps {}
 
-const Navbar: React.FC<NavbarProps> = ({ children }) => {
+const Navbar: React.FC<NavbarProps> = () => {
   const { user, logout } = useUser();
   const { items } = useCart();
 
@@ -20,42 +18,38 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
         </Link>
 
         <div className={styles.navLinks}>
-          {children || (
+          <Link to="/" className={styles.navLink}>
+            Pagrindinis
+          </Link>
+          <Link to="/products" className={styles.navLink}>
+            Prekės
+          </Link>
+          {!user && (
             <>
-              <Link to="/" className={styles.navLink}>
-                Pagrindinis
+              <Link to="/login" className={styles.navLink}>
+                Prisijungti
               </Link>
-              <Link to="/products" className={styles.navLink}>
-                Prekės
+              <Link to="/register" className={styles.navLink}>
+                Registruotis
               </Link>
-              {!user && (
-                <>
-                  <Link to="/login" className={styles.navLink}>
-                    Prisijungti
-                  </Link>
-                  <Link to="/register" className={styles.navLink}>
-                    Registruotis
-                  </Link>
-                </>
+            </>
+          )}
+          {user && (
+            <>
+              <Link to="/cart" className={styles.navLink}>
+                Krepšelis ({items.length})
+              </Link>
+              <Link to="/profile" className={styles.navLink}>
+                Profilis
+              </Link>
+              {user.role === 'admin' && (
+                <Link to="/admin" className={styles.navLink}>
+                  Admin
+                </Link>
               )}
-              {user && (
-                <>
-                  <Link to="/cart" className={styles.navLink}>
-                    Krepšelis ({items.length})
-                  </Link>
-                  <Link to="/profile" className={styles.navLink}>
-                    Profilis
-                  </Link>
-                  {user.role === 'admin' && (
-                    <Link to="/admin" className={styles.navLink}>
-                      Admin
-                    </Link>
-                  )}
-                  <button onClick={logout} className={styles.logoutButton}>
-                    Atsijungti
-                  </button>
-                </>
-              )}
+              <button onClick={logout} className={styles.logoutButton}>
+                Atsijungti
+              </button>
             </>
           )}
         </div>
