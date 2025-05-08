@@ -112,8 +112,7 @@ const ProductDetails: React.FC = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     try {
       const token = localStorage.getItem('token');
       if (!token) {
@@ -247,7 +246,7 @@ const ProductDetails: React.FC = () => {
           <Typography component="legend">Įvertinimas</Typography>
           <Rating
             value={rating}
-            onChange={(event: React.SyntheticEvent, newValue: number | null) => setRating(newValue || 0)}
+            onChange={(_, newValue: number | null) => setRating(newValue || 0)}
             precision={1}
           />
         </Box>

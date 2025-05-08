@@ -1,9 +1,10 @@
+import React from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 import { useUser } from '../contexts/UserContext';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
-const Layout = () => {
+const Layout: React.FC = () => {
   const { user, logout } = useUser();
   const navigate = useNavigate();
 
